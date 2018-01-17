@@ -1,0 +1,15 @@
+version: "3"
+services:
+  app:
+    image: nodejs-server:latest
+    ports:
+      - "3000"
+    networks:
+      - skynet
+    deploy:
+      mode: replicated
+      replicas: 2
+      labels: [APP=NODEJS]
+
+networks:
+  skynet:
