@@ -1,7 +1,11 @@
 #!groovy
 
 pipeline {
-    agent { docker 'node:alpine' }
+    agent {
+        docker {
+            image 'node'
+            args '-u root:sudo
+        }
 
     stages {
         stage('build') {
