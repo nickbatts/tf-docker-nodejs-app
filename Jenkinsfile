@@ -1,7 +1,7 @@
 #!groovy
 
 pipeline {
-    // agent { docker 'node:6.3' }
+    // agent { node }
 
     stages {
         stage('build') {
