@@ -6,6 +6,7 @@ pipeline {
             image 'node'
             args '-u root:sudo'
         }
+    }
 
     stages {
         stage('build') {
