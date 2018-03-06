@@ -1,7 +1,7 @@
 // index.js
 const http = require('http');
 const os   = require('os');
-const port = 3000;
+const port = process.env.NODE_PORT;
 
 const requestHandler = (request, response) => {
   console.log(request.url);
