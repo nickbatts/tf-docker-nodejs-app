@@ -4,7 +4,6 @@ const os   = require('os');
 const port = process.env.NODE_PORT;
 
 const requestHandler = (request, response) => {
-  console.log(request.url);
   response.end(`Hello Node.js Server!\n\nProcessed by ${os.hostname()}`);
 }
 

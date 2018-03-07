@@ -45,6 +45,9 @@ For other platforms, follow the links and instructions on the Terraform site. Re
 ```
 $ git clone https://github.com/nickbatts/tf-docker-nodejs-app.git
 $ cd tf-docker-nodejs-app
+```
+#### Docker-compose-v3 version:
+```
 $ docker stack deploy --compose-file docker-compose.yml nodeapp 
 ```
 #### Terraform version:
@@ -55,7 +58,7 @@ $ terraform apply terraform-docker-nodejs-server.tf
 
 #### Run terraform from Docker container (Optional)
 Instead of installing terraform on your local machine,
-there is Docker build for a container with all the necessary tools installed:
+there is a Docker build for a container with all the necessary tools installed:
 ```bash
 $ docker run -it hashicorp/terraform:light plan terraform-docker-nodejs-server.tf
 ```
@@ -66,7 +69,8 @@ The _index.js_ & _package.json_ files can be changed to match your node.js proje
 
 #### To build:
 ```
-$ docker build -t nodejs-server:latest .Sending build context to Docker daemon   5.12kB
+$ docker build -t nodejs-server:latest .
+Sending build context to Docker daemon   5.12kB
 Step 1/6 : FROM node:alpine
  ---> b5f94997f35f
 Step 2/6 : WORKDIR /app
@@ -91,7 +95,7 @@ Successfully tagged nodejs-server:latest
 #### View containers logs:
 
 ```
-$ docker logs <container-id>
+$ docker logs <container-id/container-name>
 server is listening on 3000
 ```
 #### Destroy all resources
@@ -122,6 +126,7 @@ _eg_, change to 3:
 ./
 |-- Dockerfile							# docker build file
 |-- docker-compose.yml					# docker service definition
+|-- nginx.conf							# load balancing server
 |-- index.js							# node app entry point
 |-- package.json						# app package definitions
 `-- terraform-docker-nodejs-server.tf	# deploy with terraform
@@ -131,16 +136,18 @@ _eg_, change to 3:
 ## Helpful Commands
 
 ### Docker administration
+* `terraform init` - initialize terraform and install modules
 * `$ docker ps` - view running docker processes
 * `$ docker service ls` - view running docker services if using _docker-compose.yml_
 * `$ docker stop $(docker ps -aq) && docker rm $(docker ps -aq)` - stop and remove all docker containers
 
-* `terraform init` - initialize terraform and install modules
 
 ## Authors
 
 * Nick Batts
 
 ## License
+
+Copyright (c) 2018 Nick Batts
 
 This project is licensed under the terms of the MIT license.
